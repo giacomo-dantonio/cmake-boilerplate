@@ -1,8 +1,10 @@
+#include <gtest/gtest.h>
 #include <fizzbuzz/base.h>
 
-std::vector<std::string> fizzbuzz(uint32_t n) {
-    std::vector<std::string> result;
-    result.reserve(n);
+TEST(FizzBuzz, CorrectUpTo15) {
+    std::vector<std::string> result = fizzbuzz(15);
+
+    ASSERT_EQ(15, result.size());
 
     for (uint8_t i = 1; i <= 15; i++) {
         std::string expected;
@@ -16,8 +18,8 @@ std::vector<std::string> fizzbuzz(uint32_t n) {
             expected = std::to_string(i);
         }
 
-        result.push_back(expected);
-    }
+        std::string actual = result[i - 1];
 
-    return result;
+        EXPECT_EQ(expected, actual);
+    }
 }
